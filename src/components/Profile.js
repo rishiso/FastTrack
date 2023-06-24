@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Text, StyleSheet, View, Image } from 'react-native';
 
 import { useUser } from '@realm/react';
+import RealmContext from '../RealmContext';
 
 const Profile = () => {
+  const {useRealm, useQuery} = RealmContext;
   const user = useUser();
+  const realm = useRealm();
+  const reports = useQuery('Report');
 
-  this.state = {
-    email: user.profile.email,
-    numReports: 0
-  };
+  useEffect(() => {
+    // initialize the subscriptions
+    const updateSubscriptions = async () => {
+      await realm.subscriptions.update(mutableSubs => {
+        // subscribe to all of the logged in user's to-do items
+        let ownReports = realm
+          .objects("Report")
+          .filtered(`reporter == "${user.id}"`);
+        // use the same name as the initial subscription to update it
+        mutableSubs.removeByObjectType("Report");
+        mutableSubs.add(ownReports);
+      });
+    };
+    updateSubscriptions();
+  }, [realm, user, reports]);
+
   return (
     <View>
       <View style={{height: 120, marginBottom: 20}}>
@@ -18,11 +34,11 @@ const Profile = () => {
       </View>
       <Text style={styles.sectionTitle}>Email</Text>
       <View style={styles.box}>
-        <Text style={styles.boxText}>{this.state.email}</Text>
+        <Text style={styles.boxText}>{user.profile.email}</Text>
       </View>
       <Text style={styles.sectionTitle}>Total Crowd Reports</Text>
       <View style={styles.box}>
-        <Text style={styles.boxText}>{this.state.numReports}</Text>
+        <Text style={styles.boxText}>{reports.length}</Text>
       </View>
     </View>
   );

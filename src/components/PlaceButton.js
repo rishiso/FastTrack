@@ -3,6 +3,7 @@ import React from 'react';
 import { Text, StyleSheet, View, Image, ImageBackground } from 'react-native';
 import { VStack, HStack } from "react-native-flex-layout";
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { GetIcon } from '../util/GetIcon';
 
 const PlaceButton = (props) => {
   return (
@@ -11,11 +12,11 @@ const PlaceButton = (props) => {
             <HStack>
                 <ImageBackground source={require("../assets/StoreButtonBackground.png")} resizeMode="stretch" style={{flex: 1, padding: 10}}>
                     <VStack style={styles.stack}>
-                        <Text style={styles.nameFont}>{props.store}</Text>
+                        <Text style={styles.nameFont}>{props.place}</Text>
                         <Text style={styles.typeFont}>{props.type}</Text>
                     </VStack>
                 </ImageBackground>
-                <Image source={require("../assets/Businesses/PandaExpress.png")} style={{height: 75, resizeMode: "contain"}}></Image>
+                <Image source={GetIcon.retrieve(props.icon)} style={styles.icon}></Image>
             </HStack>
         </View>
     </TouchableOpacity>
@@ -34,13 +35,21 @@ const styles = StyleSheet.create({
     },
     box: {
         borderWidth: 1, 
-        width: "90%", 
+        width: "90%",
         alignSelf: "center", 
-        borderRadius: 21,
-        marginBottom: 12
+        borderRadius: 22,
+        marginBottom: 12,
+        paddingRight: 10,
     },
     stack: {
         justifyContent: "center", 
+    },
+    icon: {
+        maxHeight: 75,
+        width: 120,
+        resizeMode: "contain",
+        alignSelf: "center",
+        margin: 2
     }
 });
 

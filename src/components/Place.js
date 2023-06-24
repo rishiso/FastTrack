@@ -62,6 +62,7 @@ const Place = (props) => {
         </TouchableOpacity>
       </HStack>
       <TouchableOpacity style={styles.logButton} onPress={() => {
+            /*
             if (realm) {
               realm.write(() => {
                 realm.create('Report', {
@@ -73,15 +74,16 @@ const Place = (props) => {
                 });
               });
             }
+            */
             if (realm) {
               realm.write(() => {
                 realm.create('Location', {
                   _id: new BSON.ObjectID(),
-                  name: "Panda Express",
-                  type: "Asian Food",
-                  icon: "todo",
-                  longitude: -84.397510,
-                  latitude: 33.773539,
+                  name: "West Village",
+                  type: "Dining Hall",
+                  icon: "WestVillage.png",
+                  longitude: -84.40469890916003,
+                  latitude: 33.77953008807494,
                   crowdLevel: 1
                 });
               });

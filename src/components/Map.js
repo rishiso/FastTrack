@@ -1,16 +1,14 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
 import { FindColor, GenDescription } from '../util/MarkerHelp';
 
 import RealmContext from '../RealmContext';
-import {useUser} from '@realm/react';
 
 const MapPage = () => {
 
   const {useRealm, useQuery} = RealmContext;
-  const user = useUser();
   const realm = useRealm();
   const places = useQuery('Location');
 
@@ -18,15 +16,13 @@ const MapPage = () => {
     // initialize the subscriptions
     const updateSubscriptions = async () => {
       await realm.subscriptions.update(mutableSubs => {
-        // subscribe to all of the logged in user's to-do items
         let locations = realm.objects("Location")
         // use the same name as the initial subscription to update it
-        mutableSubs.add(locations);
+        mutableSubs.add(locations, {name: "location"});
       });
     };
     updateSubscriptions();
-  }, [realm, user]);
-
+  }, [realm, places]);
 
   return (
     <View style={styles.container} >
@@ -35,9 +31,9 @@ const MapPage = () => {
         showsMyLocationButton={true}
         region={{
           latitude: 33.7756,
-          longitude: -84.3963,
-          latitudeDelta: 0.03,
-          longitudeDelta: 0.03,
+          longitude: -84.3981,
+          latitudeDelta: 0.025,
+          longitudeDelta: 0.025,
         }}>
           {places.map((marker) => (
           <Marker

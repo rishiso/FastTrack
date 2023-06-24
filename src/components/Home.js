@@ -1,11 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import { StyleSheet, View, Image, ScrollView, Text, TextInput} from 'react-native';
 import { HStack } from 'react-native-flex-layout';
 
 import PlaceButton from "./PlaceButton";
+import RealmContext from '../RealmContext';
 
 const Home = (props) => {
+  const {useRealm, useQuery} = RealmContext;
+  const realm = useRealm();
+  const places = useQuery('Location');
+
+  useEffect(() => {
+    // initialize the subscriptions
+    const updateSubscriptions = async () => {
+      await realm.subscriptions.update(mutableSubs => {
+        let locations = realm.objects("Location")
+        // use the same name as the initial subscription to update it
+        mutableSubs.add(locations, {name: "location"});
+      });
+    };
+    updateSubscriptions();
+  }, [realm, places]);
+
   return (
     <View>
       <View style={{height: 120, marginBottom: 20}}>
@@ -18,13 +35,9 @@ const Home = (props) => {
         </HStack>
       </View>
       <ScrollView style={{width: '100%', marginTop: 35, height: '65%'}}>
-          <PlaceButton store="Panda Express" type="Dining"/>
-          <PlaceButton store="Thanh's Room" type="Gaming"/>
-          <PlaceButton store="CRC" type="Recreation"/>
-          <PlaceButton store="Panda Express" type="Dining"/>
-          <PlaceButton store="Panda Express" type="Dining"/>
-          <PlaceButton store="Panda Express" type="Dining"/>
-          <PlaceButton store="Panda Express" type="Dining"/>
+        {places.map((marker) => (
+          <PlaceButton key={marker._id} place={marker.name} type={marker.type} icon={marker.icon} />
+        ))}
       </ScrollView>
     </View>
   );
