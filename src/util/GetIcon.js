@@ -24,7 +24,22 @@ export class GetIcon {
         name: 'BlueDonkey.png',
         image: require('../assets/Businesses/BlueDonkey.png'),
         },
-
+        {
+        name: 'Library.png',
+        image: require('../assets/Businesses/Library.png'),
+        },
+        {
+        name: 'TwistedTaco.jpg',
+        image: require('../assets/Businesses/TwistedTaco.jpg'),
+        },
+        {
+        name: 'CRC.png',
+        image: require('../assets/Businesses/CRC.png'),
+        },
+        {
+        name: 'PostOffice.png',
+        image: require('../assets/Businesses/PostOffice.png'),
+        },
     ];
     static retrieve = (name) => {
         const found = GetIcon.images.find(e => e.name === name);

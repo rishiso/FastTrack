@@ -9,7 +9,7 @@ import RealmContext from '../RealmContext';
 const Home = (props) => {
   const {useRealm, useQuery} = RealmContext;
   const realm = useRealm();
-  const places = useQuery('Location');
+  const places = useQuery('Location').sorted("name");
 
   useEffect(() => {
     // initialize the subscriptions

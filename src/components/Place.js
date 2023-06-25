@@ -62,7 +62,6 @@ const Place = (props) => {
         </TouchableOpacity>
       </HStack>
       <TouchableOpacity style={styles.logButton} onPress={() => {
-            /*
             if (realm) {
               realm.write(() => {
                 realm.create('Report', {
@@ -74,16 +73,15 @@ const Place = (props) => {
                 });
               });
             }
-            */
             if (realm) {
               realm.write(() => {
                 realm.create('Location', {
                   _id: new BSON.ObjectID(),
-                  name: "West Village",
-                  type: "Dining Hall",
-                  icon: "WestVillage.png",
-                  longitude: -84.40469890916003,
-                  latitude: 33.77953008807494,
+                  name: "Post Office",
+                  type: "Service",
+                  icon: "PostOffice.png",
+                  longitude: -84.39860042861412,
+                  latitude: 33.77366236421968,
                   crowdLevel: 1
                 });
               });
