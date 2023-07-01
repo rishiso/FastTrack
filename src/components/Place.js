@@ -8,15 +8,17 @@ import { Text, StyleSheet, View } from 'react-native';
 import { HStack } from 'react-native-flex-layout';
 
 import RealmContext from '../RealmContext';
-import {useUser} from '@realm/react';
+import { useUser } from '@realm/react';
+import { GetIcon } from '../util/GetIcon';
 
 const Place = (props) => {
 
   const [reportRating, setRating] = useState(5);
 
-  const {useRealm, useQuery} = RealmContext;
+  const {useRealm, useObject} = RealmContext;
   const user = useUser();
   const realm = useRealm();
+  const place = useObject("Location", props.currentPlace);
 
   useEffect(() => {
     // initialize the subscriptions
@@ -35,17 +37,17 @@ const Place = (props) => {
 
   return (
     <View>
-      <Image source={require("../assets/Businesses/PandaExpress.png")} style={{alignSelf: "center", margin: 20}}></Image>
-      <Text style={styles.bizName}>{props.name}</Text>
-      <Text style={styles.type}>{props.type}</Text>
+      <Image source={GetIcon.retrieve(place.icon)} style={{alignSelf: "center", margin: 20, maxHeight: 100, resizeMode: "contain"}}></Image>
+      <Text style={styles.bizName}>{place.name}</Text>
+      <Text style={styles.type}>{place.type}</Text>
       <View style={styles.crowdLevelBox}>
         <View style={{margin: 5}}>
-          <Text style={styles.metrics}>{crowdLevel(props.score)}</Text>
+          <Text style={styles.metrics}>{crowdLevel(place.crowdLevel)}</Text>
           <Text style={styles.metricDescription}>crowd level</Text>
         </View>
         <View style={{marginLeft: 25, marginRight: 25, borderWidth: 1}}></View>
         <View style={{margin: 5}}>
-          <Text style={styles.metrics}>{props.lastReported + " min"}</Text>
+          <Text style={styles.metrics}>{10 + " min"}</Text>
           <Text style={styles.metricDescription}>last reported</Text>
         </View>
       </View>
@@ -66,23 +68,10 @@ const Place = (props) => {
               realm.write(() => {
                 realm.create('Report', {
                   _id: new BSON.ObjectID(),
-                  location: props.name,
+                  location: place.name,
                   reporter: user.id,
                   time: (new Date()).getTime(),
                   crowdLevel: reportRating
-                });
-              });
-            }
-            if (realm) {
-              realm.write(() => {
-                realm.create('Location', {
-                  _id: new BSON.ObjectID(),
-                  name: "Post Office",
-                  type: "Service",
-                  icon: "PostOffice.png",
-                  longitude: -84.39860042861412,
-                  latitude: 33.77366236421968,
-                  crowdLevel: 1
                 });
               });
             }

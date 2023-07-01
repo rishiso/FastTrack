@@ -1,15 +1,17 @@
 import React, {useEffect} from 'react';
 
-import { StyleSheet, View, Image, ScrollView, Text, TextInput} from 'react-native';
+import { StyleSheet, View, Image, ScrollView, Text, TextInput, TouchableOpacity} from 'react-native';
 import { HStack } from 'react-native-flex-layout';
 
 import PlaceButton from "./PlaceButton";
 import RealmContext from '../RealmContext';
+import { TabActions, useNavigation } from '@react-navigation/native';
 
 const Home = (props) => {
   const {useRealm, useQuery} = RealmContext;
   const realm = useRealm();
   const places = useQuery('Location').sorted("name");
+  const navigation = useNavigation();
 
   useEffect(() => {
     // initialize the subscriptions
@@ -35,8 +37,14 @@ const Home = (props) => {
         </HStack>
       </View>
       <ScrollView style={{width: '100%', marginTop: 35, height: '65%'}}>
-        {places.map((marker) => (
-          <PlaceButton key={marker._id} place={marker.name} type={marker.type} icon={marker.icon} />
+        {places.map((place) => (
+          <TouchableOpacity key={place._id} onPress={() => {
+              props.updatePlace(place._id);
+              navigation.dispatch(TabActions.jumpTo("Place"));
+            }
+          }> 
+            <PlaceButton place={place.name} type={place.type} icon={place.icon} />
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>

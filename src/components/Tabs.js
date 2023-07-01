@@ -8,26 +8,23 @@ import PageHeader from './PageHeader';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet } from 'react-native';
+import { BSON } from 'realm';
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
-  const [storeVals, updateStore] = useState({
-    storeName: "Panda Express",
-    storeType: "Asian Food",
-    storeScore: 5,
-    storeLastReported: 20
-  })
+  const [currentPlace, updatePlace] = useState(new BSON.ObjectID("64975ca2ef472840ec4934ca"));
 
 
-  const StoreComp = (props) => <Place name={storeVals.storeName} type={storeVals.storeType} score={storeVals.storeScore} lastReported={storeVals.storeLastReported} />
+  const PlaceComp = () => <Place currentPlace={currentPlace} />
+  const HomeComp = () => <Home updatePlace={updatePlace} />
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarInactiveBackgroundColor: "white",
         tabBarActiveBackgroundColor: "#D7DBD8"
       }}>
-      <Tab.Screen name="Home" component={Home} options={{
+      <Tab.Screen name="Home" component={HomeComp} options={{
         headerTintColor: "white",
         tabBarLabelStyle: styles.textStandard,
         header: () => (
@@ -48,7 +45,7 @@ const Tabs = () => {
         ), 
       }}
       />
-      <Tab.Screen name="Place" component={StoreComp} options={{
+      <Tab.Screen name="Place" component={PlaceComp} options={{
         tabBarLabelStyle: styles.textStandard,
         header: () => (
           <PageHeader />

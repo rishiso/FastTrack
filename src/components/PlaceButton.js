@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import { Text, StyleSheet, View, Image, ImageBackground } from 'react-native';
 import { VStack, HStack } from "react-native-flex-layout";
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { GetIcon } from '../util/GetIcon';
 
 const PlaceButton = (props) => {
+
   return (
-    <TouchableOpacity>
         <View style={styles.box}>
             <HStack>
                 <ImageBackground source={require("../assets/StoreButtonBackground.png")} resizeMode="stretch" style={{flex: 1, padding: 10}}>
@@ -19,7 +18,6 @@ const PlaceButton = (props) => {
                 <Image source={GetIcon.retrieve(props.icon)} style={styles.icon}></Image>
             </HStack>
         </View>
-    </TouchableOpacity>
   );
 };
 
