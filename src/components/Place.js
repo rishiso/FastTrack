@@ -10,15 +10,17 @@ import { HStack } from 'react-native-flex-layout';
 import RealmContext from '../RealmContext';
 import { useUser } from '@realm/react';
 import { GetIcon } from '../util/GetIcon';
+import { lastReport } from '../util/LastReport';
 
 const Place = (props) => {
 
   const [reportRating, setRating] = useState(5);
 
-  const {useRealm, useObject} = RealmContext;
+  const {useRealm, useQuery, useObject} = RealmContext;
   const user = useUser();
   const realm = useRealm();
   const place = useObject("Location", props.currentPlace);
+  const placeReports = useQuery("Report").filtered(`location == "${place.name}"`).sorted("time", true);
 
   useEffect(() => {
     // initialize the subscriptions
@@ -33,7 +35,7 @@ const Place = (props) => {
       });
     };
     updateSubscriptions();
-  }, [realm, user]);
+  }, [realm, placeReports, place]);
 
   return (
     <View>
@@ -47,7 +49,7 @@ const Place = (props) => {
         </View>
         <View style={{marginLeft: 25, marginRight: 25, borderWidth: 1}}></View>
         <View style={{margin: 5}}>
-          <Text style={styles.metrics}>{10 + " min"}</Text>
+          <Text style={styles.metrics}>{lastReport(placeReports)}</Text>
           <Text style={styles.metricDescription}>last reported</Text>
         </View>
       </View>
