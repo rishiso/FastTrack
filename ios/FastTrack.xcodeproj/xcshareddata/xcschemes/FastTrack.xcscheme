@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "SyncTutorial.app"
-               BlueprintName = "SyncTutorial"
-               ReferencedContainer = "container:SyncTutorial.xcodeproj">
+               BuildableName = "FastTrack.app"
+               BlueprintName = "FastTrack"
+               ReferencedContainer = "container:FastTrack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "SyncTutorialTests.xctest"
-               BlueprintName = "SyncTutorialTests"
-               ReferencedContainer = "container:SyncTutorial.xcodeproj">
+               BuildableName = "FastTrackTests.xctest"
+               BlueprintName = "FastTrackTests"
+               ReferencedContainer = "container:FastTrack.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "SyncTutorial.app"
-            BlueprintName = "SyncTutorial"
-            ReferencedContainer = "container:SyncTutorial.xcodeproj">
+            BuildableName = "FastTrack.app"
+            BlueprintName = "FastTrack"
+            ReferencedContainer = "container:FastTrack.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "SyncTutorial.app"
-            BlueprintName = "SyncTutorial"
-            ReferencedContainer = "container:SyncTutorial.xcodeproj">
+            BuildableName = "FastTrack.app"
+            BlueprintName = "FastTrack"
+            ReferencedContainer = "container:FastTrack.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

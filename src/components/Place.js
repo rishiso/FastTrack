@@ -26,10 +26,8 @@ const Place = (props) => {
     // initialize the subscriptions
     const updateSubscriptions = async () => {
       await realm.subscriptions.update(mutableSubs => {
-        // subscribe to all of the logged in user's to-do items
         let locations = realm.objects("Location");
         let reports = realm.objects("Report");
-        // use the same name as the initial subscription to update it
         mutableSubs.add(reports);
         mutableSubs.add(locations);
       });

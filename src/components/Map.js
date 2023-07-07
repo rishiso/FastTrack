@@ -17,7 +17,6 @@ const MapPage = () => {
     const updateSubscriptions = async () => {
       await realm.subscriptions.update(mutableSubs => {
         let locations = realm.objects("Location")
-        // use the same name as the initial subscription to update it
         mutableSubs.add(locations, {name: "location"});
       });
     };

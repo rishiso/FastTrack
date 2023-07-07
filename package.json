@@ -1,5 +1,5 @@
 {
-  "name": "SyncTutorial",
+  "name": "fasttrack",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -24,6 +24,7 @@
     "react-native-get-random-values": "^1.8.0",
     "react-native-maps": "^1.7.1",
     "react-native-reanimated": "^2.0.1",
+    "react-native-rename": "^3.2.13",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.20.0",
     "react-native-vector-icons": "^9.2.0",

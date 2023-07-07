@@ -9,18 +9,13 @@ const Profile = () => {
   const {useRealm, useQuery} = RealmContext;
   const user = useUser();
   const realm = useRealm();
-  const reports = useQuery('Report');
+  const reports = useQuery('Report').filtered(`reporter == "${user.id}"`);;
 
   useEffect(() => {
     // initialize the subscriptions
     const updateSubscriptions = async () => {
       await realm.subscriptions.update(mutableSubs => {
-        // subscribe to all of the logged in user's to-do items
-        let ownReports = realm
-          .objects("Report")
-          .filtered(`reporter == "${user.id}"`);
-        // use the same name as the initial subscription to update it
-        mutableSubs.removeByObjectType("Report");
+        let ownReports = realm.objects("Report");
         mutableSubs.add(ownReports);
       });
     };
