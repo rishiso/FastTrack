@@ -15,7 +15,6 @@ import { lastReport } from '../util/LastReport';
 const Place = (props) => {
 
   const [reportRating, setRating] = useState(5);
-
   const {useRealm, useQuery, useObject} = RealmContext;
   const user = useUser();
   const realm = useRealm();

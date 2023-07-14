@@ -1,7 +1,7 @@
 export function FindColor(score) {
-    if (score < 4) {
+    if (score <= 3) {
         return ("green");
-    } else if (score > 4 && score < 7) {
+    } else if (score >= 4 && score <= 6) {
         return ("orange");
     } else {
         return ("red");
