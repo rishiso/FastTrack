@@ -1,4 +1,4 @@
-export function lastReport(placeReports, placeName) {
+export function lastPlaceReport(placeReports) {
     if (placeReports.length == 0) {
         return "N/A";
     }
@@ -9,4 +9,15 @@ export function lastReport(placeReports, placeName) {
         return(Math.floor((curTime - latestReport.time)/60000)  + " min");
     }
     return "N/A";
+}
+
+export function recentUserReport(userReports) {
+    if (userReports.length == 0) {
+        return false;
+    }
+
+    const curTime = new Date().getTime();
+    const latestReport = userReports[0];
+
+    return (curTime - latestReport.time <= 1800000);
 }

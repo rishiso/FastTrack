@@ -3,14 +3,14 @@ import { Image, TouchableOpacity } from 'react-native';
 import { crowdLevel } from '../util/DescHelp';
 import { BSON } from 'realm';
 
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, Alert} from 'react-native';
 
 import { HStack } from 'react-native-flex-layout';
 
 import RealmContext from '../RealmContext';
 import { useUser } from '@realm/react';
 import { GetIcon } from '../util/GetIcon';
-import { lastReport } from '../util/LastReport';
+import { lastPlaceReport, recentUserReport } from '../util/LastReport';
 
 const Place = (props) => {
 
@@ -20,6 +20,7 @@ const Place = (props) => {
   const realm = useRealm();
   const place = useObject("Location", props.currentPlace);
   const placeReports = useQuery("Report").filtered(`location == "${place.name}"`).sorted("time", true);
+  const userReports = placeReports.filtered(`reporter == "${user.id}"`);
 
   useEffect(() => {
     // initialize the subscriptions
@@ -32,7 +33,7 @@ const Place = (props) => {
       });
     };
     updateSubscriptions();
-  }, [realm, placeReports, place]);
+  }, [realm, placeReports, user, place]);
 
   return (
     <View>
@@ -46,7 +47,7 @@ const Place = (props) => {
         </View>
         <View style={{marginLeft: 25, marginRight: 25, borderWidth: 1}}></View>
         <View style={{margin: 5}}>
-          <Text style={styles.metrics}>{lastReport(placeReports)}</Text>
+          <Text style={styles.metrics}>{lastPlaceReport(placeReports)}</Text>
           <Text style={styles.metricDescription}>last reported</Text>
         </View>
       </View>
@@ -62,21 +63,32 @@ const Place = (props) => {
           <Text style={[(reportRating == 10) ? styles.textSelected : styles.textNotSelected, {padding: 3}]}>High</Text>
         </TouchableOpacity>
       </HStack>
-      <TouchableOpacity style={styles.logButton} onPress={() => {
-            if (realm) {
-              realm.write(() => {
-                realm.create('Report', {
-                  _id: new BSON.ObjectID(),
-                  location: place.name,
-                  reporter: user.id,
-                  time: (new Date()).getTime(),
-                  crowdLevel: reportRating
-                });
-              });
-            }
-      }}>
-        <Text style={styles.logText}>Confirm</Text>
-      </TouchableOpacity>
+      <>
+          {
+            (!recentUserReport(userReports)) ?
+              <TouchableOpacity style={styles.logButton} onPress={() => {
+                if (realm) {
+                  realm.write(() => {
+                    realm.create('Report', {
+                      _id: new BSON.ObjectID(),
+                      location: place.name,
+                      reporter: user.id,
+                      time: (new Date()).getTime(),
+                      crowdLevel: reportRating
+                      });
+                    });
+                  }
+                 }}>
+                <Text style={styles.logText}>Confirm</Text>
+              </TouchableOpacity>
+              :
+              <TouchableOpacity style={styles.logButton} onPress={() => {
+                Alert.alert("You have already reported!", "Please wait 30 minutes in between reports.");
+              }}>
+                <Text style={styles.logText}>Confirm</Text>
+              </TouchableOpacity>
+          }
+      </>
     </View>
   );
 };
