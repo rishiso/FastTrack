@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 
-import { Text, StyleSheet, View, Image } from 'react-native';
+import {Text, StyleSheet, View, Image} from 'react-native';
 
-import { useUser } from '@realm/react';
+import {useUser} from '@realm/react';
 import RealmContext from '../RealmContext';
 
 const Profile = () => {
   const {useRealm, useQuery} = RealmContext;
   const user = useUser();
   const realm = useRealm();
-  const reports = useQuery('Report').filtered(`reporter == "${user.id}"`);;
+  const reports = useQuery('Report').filtered(`reporter == "${user.id}"`);
 
   useEffect(() => {
     // initialize the subscriptions
     const updateSubscriptions = async () => {
       await realm.subscriptions.update(mutableSubs => {
-        let ownReports = realm.objects("Report");
+        let ownReports = realm.objects('Report');
         mutableSubs.add(ownReports);
       });
     };
@@ -25,7 +25,9 @@ const Profile = () => {
   return (
     <View>
       <View style={{height: 120, marginBottom: 20}}>
-        <Image source={require("../assets/ProfileBanner.jpg")} style={styles.profileBanner}></Image>
+        <Image
+          source={require('../assets/ProfileBanner.jpg')}
+          style={styles.profileBanner}></Image>
       </View>
       <Text style={styles.sectionTitle}>Email</Text>
       <View style={styles.box}>
@@ -44,28 +46,28 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginLeft: '5%',
     marginBottom: 5,
-    color: "#4A4B4A",
-    fontWeight: 'bold'
+    color: '#4A4B4A',
+    fontWeight: 'bold',
   },
   profileBanner: {
     flex: 1,
     height: null,
     width: null,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
   boxText: {
     fontSize: 22,
-    padding: 5
+    padding: 5,
   },
   box: {
-    alignItems: "center",
+    alignItems: 'center',
     borderWidth: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
     width: '90%',
     alignSelf: 'center',
     borderRadius: 12,
-    marginBottom: 20
-  }
+    marginBottom: 20,
+  },
 });
 
 export default Profile;

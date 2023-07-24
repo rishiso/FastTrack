@@ -6,7 +6,7 @@ import {AppProvider, UserProvider, useUser} from '@realm/react';
 import {appId, baseUrl} from '../atlasConfig.json';
 import RealmContext from './RealmContext';
 const {RealmProvider} = RealmContext;
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
 import Welcome from './components/Welcome';
 import Tabs from './components/Tabs';
@@ -22,13 +22,12 @@ const AppWrapper = () => {
 };
 
 const App = () => {
-
   return (
     <>
       {/* After login, user will be automatically populated in realm configuration */}
       <RealmProvider
         sync={{
-          flexible: true
+          flexible: true,
         }}
         fallback={() => (
           <View style={styles.activityContainer}>

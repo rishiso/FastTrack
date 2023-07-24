@@ -1,4 +1,4 @@
-// create Realm Context function from the package automatically create the realm 
+// create Realm Context function from the package automatically create the realm
 
 import {createRealmContext} from '@realm/react';
 

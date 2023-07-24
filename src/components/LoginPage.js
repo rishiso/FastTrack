@@ -1,10 +1,18 @@
 import React from 'react';
 import Realm from 'realm';
-import { useApp } from '@realm/react';
-import { Text, StyleSheet, View, Image, ImageBackground, TextInput, Alert } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {useApp} from '@realm/react';
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  ImageBackground,
+  TextInput,
+  Alert,
+} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const LoginPage = (props) => {
+const LoginPage = props => {
   const [email, onChangeEmail] = React.useState('');
   const [password, onChangePass] = React.useState('');
 
@@ -31,24 +39,23 @@ const LoginPage = (props) => {
         source={require('../assets/LoginBackground.png')}
         style={styles.background}>
         <Image source={require('../assets/Logo.png')} style={styles.logo} />
-        <Text style={styles.motto}>Skip Line, Get Food</Text>
-        <Text style={styles.login}>Login</Text>
+        <Text style={styles.motto}>Login</Text>
         <TextInput
-          placeholder='Email'
+          placeholder="Email"
           style={styles.input}
           onChangeText={onChangeEmail}
           value={email}
         />
         <TextInput
-          placeholder='Password'
+          placeholder="Password"
           style={styles.input}
           onChangeText={onChangePass}
           value={password}
           secureTextEntry={true}
         />
-      <TouchableOpacity style={styles.logButton} onPress={onPressSignIn}>
-        <Text style={styles.logText}>Confirm</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.logButton} onPress={onPressSignIn}>
+          <Text style={styles.logText}>Confirm</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => props.swap(true)}>
           <Text style={styles.register}>
             <Text>Don't have an account? </Text>
@@ -62,20 +69,21 @@ const LoginPage = (props) => {
 
 const styles = StyleSheet.create({
   motto: {
-    fontSize: 30,
+    fontSize: 45,
     fontWeight: 'bold',
     marginTop: '7%',
+    marginBottom: '30%',
   },
   login: {
     fontSize: 32,
     fontWeight: 'bold',
-    marginTop: '40%',
+    marginTop: '32%',
   },
   logo: {
-    height: 100,
+    height: '16%',
     resizeMethod: 'scale',
     resizeMode: 'contain',
-    marginTop: '50%',
+    marginTop: '20%',
   },
   screenStyle: {
     justifyContent: 'center',
@@ -89,14 +97,15 @@ const styles = StyleSheet.create({
   },
   register: {
     fontSize: 12,
-    marginTop: 10
+    marginTop: 10,
   },
   input: {
     marginTop: '7%',
-    width: 240,
+    width: '70%',
     padding: 0,
     borderBottomWidth: 2,
     borderBottomColor: '#10551F55',
+    fontSize: 16,
   },
   forget: {
     textAlign: 'right',
@@ -116,7 +125,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 22,
     fontWeight: 'bold',
-  }
+  },
 });
 
 export default LoginPage;

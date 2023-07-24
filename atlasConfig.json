@@ -1,9 +1,9 @@
 {
-    "appId": "fasttrack-rfuoa",
-    "appUrl": "https://realm.mongodb.com/groups/63b47ab7f55d885a7fa166d1/apps/6486320fffe1ffe2f7614959",
-    "baseUrl": "https://realm.mongodb.com",
-    "clientApiBaseUrl": "https://us-central1.gcp.realm.mongodb.com",
-    "dataApiBaseUrl": "https://us-central1.gcp.data.mongodb-api.com",
-    "dataExplorerLink": "https://cloud.mongodb.com/links/63b47ab7f55d885a7fa166d1/explorer/Main/database/collection/find",
-    "dataSourceName": "mongodb-atlas"
+  "appId": "fasttrack-rfuoa",
+  "appUrl": "https://realm.mongodb.com/groups/63b47ab7f55d885a7fa166d1/apps/6486320fffe1ffe2f7614959",
+  "baseUrl": "https://realm.mongodb.com",
+  "clientApiBaseUrl": "https://us-central1.gcp.realm.mongodb.com",
+  "dataApiBaseUrl": "https://us-central1.gcp.data.mongodb-api.com",
+  "dataExplorerLink": "https://cloud.mongodb.com/links/63b47ab7f55d885a7fa166d1/explorer/Main/database/collection/find",
+  "dataSourceName": "mongodb-atlas"
 }

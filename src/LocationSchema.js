@@ -5,10 +5,10 @@ export class Location {
     _id = new BSON.ObjectId(),
     name,
     type,
-    icon, 
-    longtitude, 
-    latitude, 
-    crowdLevel
+    icon,
+    longtitude,
+    latitude,
+    crowdLevel,
   }) {
     this._id = _id;
     this.name = name;
@@ -20,16 +20,16 @@ export class Location {
   }
 
   static schema = {
-    name: "Location", 
+    name: 'Location',
     properties: {
-        _id: "objectId", 
-        name: "string", 
-        type: "string",
-        icon: "string",
-        longitude: "double", 
-        latitude: "double",
-        crowdLevel: "int"
-    }, 
+      _id: 'objectId',
+      name: 'string',
+      type: 'string',
+      icon: 'string',
+      longitude: 'double',
+      latitude: 'double',
+      crowdLevel: 'int',
+    },
     primaryKey: '_id',
-}
+  };
 }

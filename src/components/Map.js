@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import React, {useEffect} from 'react';
+import {StyleSheet, View} from 'react-native';
+import MapView, {Marker} from 'react-native-maps';
 
-import { FindColor, GenDescription } from '../util/MarkerHelp';
+import {FindColor, GenDescription} from '../util/MarkerHelp';
 
 import RealmContext from '../RealmContext';
 
 const MapPage = () => {
-
   const {useRealm, useQuery} = RealmContext;
   const realm = useRealm();
   const places = useQuery('Location');
@@ -16,15 +15,15 @@ const MapPage = () => {
     // initialize the subscriptions
     const updateSubscriptions = async () => {
       await realm.subscriptions.update(mutableSubs => {
-        let locations = realm.objects("Location")
-        mutableSubs.add(locations, {name: "location"});
+        let locations = realm.objects('Location');
+        mutableSubs.add(locations, {name: 'location'});
       });
     };
     updateSubscriptions();
   }, [realm, places]);
 
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <MapView
         style={styles.map}
         showsMyLocationButton={true}
@@ -34,10 +33,13 @@ const MapPage = () => {
           latitudeDelta: 0.025,
           longitudeDelta: 0.025,
         }}>
-          {places.map((marker) => (
+        {places.map(marker => (
           <Marker
             key={marker._id}
-            coordinate={{latitude: marker.latitude, longitude: marker.longitude}}
+            coordinate={{
+              latitude: marker.latitude,
+              longitude: marker.longitude,
+            }}
             title={marker.name}
             description={GenDescription(marker.crowdLevel)}
             pinColor={FindColor(marker.crowdLevel)}

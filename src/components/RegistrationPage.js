@@ -1,11 +1,21 @@
 import React from 'react';
 import Realm from 'realm';
-import { useApp } from '@realm/react';
+import {useApp} from '@realm/react';
 
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  ImageBackground,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import normalize from 'react-native-normalize';
 
-import { Text, StyleSheet, View, Image, ImageBackground, TextInput, TouchableOpacity, Alert } from 'react-native';
-
-const RegistrationPage = (props) => {
+const RegistrationPage = props => {
   const [email, onChangeEmail] = React.useState('');
   const [password, onChangePass] = React.useState('');
   const [retypePassword, onChangeRPass] = React.useState('');
@@ -17,15 +27,16 @@ const RegistrationPage = (props) => {
     await app.logIn(creds);
   };
 
-  const validateEmail = (e) => { 
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(re.test(e)){
-        if(e.indexOf("@gatech.edu", e.length - "@gatech.edu".length) !== -1){
-            return true;
-        }
+  const validateEmail = e => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(e)) {
+      if (e.indexOf('@gatech.edu', e.length - '@gatech.edu'.length) !== -1) {
+        return true;
+      }
     }
     return false;
-}
+  };
 
   const onPressSignUp = async () => {
     try {
@@ -33,9 +44,9 @@ const RegistrationPage = (props) => {
         await app.emailPasswordAuth.registerUser({email, password});
         signIn(email, password);
       } else if (password !== retypePassword) {
-        throw new Error("Passwords do not match")
+        throw new Error('Passwords do not match');
       } else if (!validateEmail(email)) {
-        throw new Error("Not a valid GT email")
+        throw new Error('Not a valid GT email');
       }
     } catch (error) {
       Alert.alert(`Failed to sign up: ${error.message}`);
@@ -48,38 +59,37 @@ const RegistrationPage = (props) => {
         source={require('../assets/LoginBackground.png')}
         style={styles.background}>
         <Image source={require('../assets/Logo.png')} style={styles.logo} />
-        <Text style={styles.motto}>Skip Line, Get Food</Text>
-        <Text style={styles.login}>Registration</Text>
+        <Text style={styles.motto}>Registration</Text>
         <TextInput
-          placeholder='Email'
+          placeholder="Email"
           style={styles.input}
           onChangeText={onChangeEmail}
           value={email}
         />
-      <TextInput
-        placeholder='Password'
-        style={styles.input}
-        onChangeText={onChangePass}
-        value={password}
-        secureTextEntry={true}
-      />
-      <TextInput
-        placeholder='Retype Password' 
-        style={styles.input}
-        onChangeText={onChangeRPass}
-        value={retypePassword}
-        secureTextEntry={true}
-      />
+        <TextInput
+          placeholder="Password"
+          style={styles.input}
+          onChangeText={onChangePass}
+          value={password}
+          secureTextEntry={true}
+        />
+        <TextInput
+          placeholder="Retype Password"
+          style={styles.input}
+          onChangeText={onChangeRPass}
+          value={retypePassword}
+          secureTextEntry={true}
+        />
 
-      <TouchableOpacity style={styles.logButton} onPress={onPressSignUp}>
-        <Text style={styles.logText}>Confirm</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => props.swap(false)}>
-      <Text style={styles.register}>
-          <Text>Already have an account? </Text>
-          <Text style={{fontWeight: 'bold'}}>Sign In</Text>
-        </Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.logButton} onPress={onPressSignUp}>
+          <Text style={styles.logText}>Confirm</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => props.swap(false)}>
+          <Text style={styles.register}>
+            <Text>Already have an account? </Text>
+            <Text style={{fontWeight: 'bold'}}>Sign In</Text>
+          </Text>
+        </TouchableOpacity>
       </ImageBackground>
     </View>
   );
@@ -87,20 +97,21 @@ const RegistrationPage = (props) => {
 
 const styles = StyleSheet.create({
   motto: {
-    fontSize: 30,
+    fontSize: 45,
     fontWeight: 'bold',
     marginTop: '7%',
+    marginBottom: '30%',
   },
   login: {
     fontSize: 32,
     fontWeight: 'bold',
-    marginTop: '40%',
+    marginTop: '32%',
   },
   logo: {
-    height: 100,
+    height: '16%',
     resizeMethod: 'scale',
     resizeMode: 'contain',
-    marginTop: '50%',
+    marginTop: '20%',
   },
   screenStyle: {
     justifyContent: 'center',
@@ -114,14 +125,15 @@ const styles = StyleSheet.create({
   },
   register: {
     fontSize: 12,
-    marginTop: 10
+    marginTop: 10,
   },
   input: {
     marginTop: '7%',
-    width: 240,
+    width: '70%',
     padding: 0,
     borderBottomWidth: 2,
     borderBottomColor: '#10551F55',
+    fontSize: 16,
   },
   forget: {
     textAlign: 'right',
@@ -141,7 +153,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 22,
     fontWeight: 'bold',
-  }
+  },
 });
 
 export default RegistrationPage;
