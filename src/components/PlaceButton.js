@@ -1,5 +1,3 @@
-import React, {useEffect} from 'react';
-
 import {Text, StyleSheet, View, Image, ImageBackground} from 'react-native';
 import {VStack, HStack} from 'react-native-flex-layout';
 import {GetIcon} from '../util/GetIcon';

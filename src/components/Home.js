@@ -50,7 +50,7 @@ const Home = props => {
           />
         </HStack>
       </View>
-      <ScrollView style={{width: '100%', marginTop: 25, marginBottom: 175}}>
+      <ScrollView style={styles.scroller}>
         {SearchFilter(places, searchText).map(place => (
           <TouchableOpacity
             key={place._id}
@@ -77,14 +77,14 @@ const styles = StyleSheet.create({
     width: '100%',
     resizeMode: 'cover',
   },
-  img: {
-    width: '90%',
-    resizeMode: 'contain',
-    alignSelf: 'center',
-  },
   searchText: {
     fontSize: 18,
     width: '80%',
+  },
+  scroller: {
+    width: '100%',
+    marginTop: 25,
+    marginBottom: 175,
   },
   box: {
     alignItems: 'center',

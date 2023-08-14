@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {Button, Alert} from 'react-native';
 import {useUser} from '@realm/react';
 

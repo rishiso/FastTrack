@@ -39,7 +39,7 @@ const LoginPage = props => {
         source={require('../assets/LoginBackground.png')}
         style={styles.background}>
         <Image source={require('../assets/Logo.png')} style={styles.logo} />
-        <Text style={styles.motto}>Login</Text>
+        <Text style={styles.title}>Login</Text>
         <TextInput
           placeholder="Email"
           style={styles.input}
@@ -68,16 +68,11 @@ const LoginPage = props => {
 };
 
 const styles = StyleSheet.create({
-  motto: {
+  title: {
     fontSize: 45,
     fontWeight: 'bold',
     marginTop: '7%',
     marginBottom: '30%',
-  },
-  login: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginTop: '32%',
   },
   logo: {
     height: '16%',
@@ -106,10 +101,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: '#10551F55',
     fontSize: 16,
-  },
-  forget: {
-    textAlign: 'right',
-    marginTop: 3,
   },
   logButton: {
     alignItems: 'center',

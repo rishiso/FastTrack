@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {Image, TouchableOpacity} from 'react-native';
 import {crowdLevel} from '../util/DescHelp';
 import {BSON} from 'realm';
@@ -34,18 +34,11 @@ const Place = props => {
       });
     };
     updateSubscriptions();
-  }, [realm, placeReports, user, place]);
+  }, [realm, placeReports, userReports, user, place]);
 
   return (
     <View>
-      <Image
-        source={GetIcon.retrieve(place.icon)}
-        style={{
-          alignSelf: 'center',
-          margin: 20,
-          maxHeight: 100,
-          resizeMode: 'contain',
-        }}></Image>
+      <Image source={GetIcon.retrieve(place.icon)} style={styles.img}></Image>
       <Text style={styles.bizName}>{place.name}</Text>
       <Text style={styles.type}>{place.type}</Text>
       <View style={styles.crowdLevelBox}>
@@ -73,10 +66,9 @@ const Place = props => {
           }
           onPress={() => setRating(1)}>
           <Text
-            style={[
-              reportRating == 1 ? styles.textSelected : styles.textNotSelected,
-              {padding: 3},
-            ]}>
+            style={
+              reportRating == 1 ? styles.textSelected : styles.textNotSelected
+            }>
             Low
           </Text>
         </TouchableOpacity>
@@ -86,10 +78,9 @@ const Place = props => {
           }
           onPress={() => setRating(5)}>
           <Text
-            style={[
-              reportRating == 5 ? styles.textSelected : styles.textNotSelected,
-              {padding: 3},
-            ]}>
+            style={
+              reportRating == 5 ? styles.textSelected : styles.textNotSelected
+            }>
             Moderate
           </Text>
         </TouchableOpacity>
@@ -101,10 +92,9 @@ const Place = props => {
           }
           onPress={() => setRating(10)}>
           <Text
-            style={[
-              reportRating == 10 ? styles.textSelected : styles.textNotSelected,
-              {padding: 3},
-            ]}>
+            style={
+              reportRating == 10 ? styles.textSelected : styles.textNotSelected
+            }>
             High
           </Text>
         </TouchableOpacity>
@@ -146,6 +136,12 @@ const Place = props => {
 };
 
 const styles = StyleSheet.create({
+  img: {
+    alignSelf: 'center',
+    margin: 20,
+    maxHeight: 100,
+    resizeMode: 'contain',
+  },
   crowdLevelBox: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -177,6 +173,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     fontWeight: 'bold',
+    padding: 3,
   },
   textSelected: {
     fontSize: 20,
@@ -184,6 +181,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontWeight: 'bold',
     color: 'white',
+    padding: 3,
   },
   bizName: {
     fontSize: 30,

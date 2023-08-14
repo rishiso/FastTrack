@@ -63,31 +63,6 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
-  button: {
-    position: 'absolute',
-    alignSelf: 'center',
-    top: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 36,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: 'black',
-  },
-  buttonText: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    textAlign: 'center',
-    marginTop: 100,
-  },
 });
 
 export default MapPage;

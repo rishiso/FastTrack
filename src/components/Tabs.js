@@ -60,7 +60,7 @@ const Tabs = () => {
         options={{
           tabBarLabelStyle: styles.textStandard,
           header: () => <PageHeader />,
-          tabBarIcon: ({focused, color, size}) => (
+          tabBarIcon: () => (
             <Image
               source={require('../assets/StoreMenuIcon.png')}
               style={styles.tinyLogo}
@@ -74,7 +74,7 @@ const Tabs = () => {
         options={{
           tabBarLabelStyle: styles.textStandard,
           header: () => <PageHeader />,
-          tabBarIcon: ({focused, color, size}) => (
+          tabBarIcon: () => (
             <Image
               source={require('../assets/ProfileMenuIcon.png')}
               style={styles.tinyLogo}

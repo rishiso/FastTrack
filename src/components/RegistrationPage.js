@@ -12,8 +12,6 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import normalize from 'react-native-normalize';
 
 const RegistrationPage = props => {
   const [email, onChangeEmail] = React.useState('');
@@ -59,7 +57,7 @@ const RegistrationPage = props => {
         source={require('../assets/LoginBackground.png')}
         style={styles.background}>
         <Image source={require('../assets/Logo.png')} style={styles.logo} />
-        <Text style={styles.motto}>Registration</Text>
+        <Text style={styles.title}>Registration</Text>
         <TextInput
           placeholder="Email"
           style={styles.input}
@@ -96,16 +94,11 @@ const RegistrationPage = props => {
 };
 
 const styles = StyleSheet.create({
-  motto: {
+  title: {
     fontSize: 45,
     fontWeight: 'bold',
     marginTop: '7%',
     marginBottom: '30%',
-  },
-  login: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginTop: '32%',
   },
   logo: {
     height: '16%',
