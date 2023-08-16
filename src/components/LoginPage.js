@@ -45,6 +45,7 @@ const LoginPage = props => {
           style={styles.input}
           onChangeText={onChangeEmail}
           value={email}
+          placeholderTextColor={'#A9ACAC'}
         />
         <TextInput
           placeholder="Password"
@@ -52,6 +53,7 @@ const LoginPage = props => {
           onChangeText={onChangePass}
           value={password}
           secureTextEntry={true}
+          placeholderTextColor={'#A9ACAC'}
         />
         <TouchableOpacity style={styles.logButton} onPress={onPressSignIn}>
           <Text style={styles.logText}>Confirm</Text>

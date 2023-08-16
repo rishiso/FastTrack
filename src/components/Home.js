@@ -47,6 +47,7 @@ const Home = props => {
             placeholder="Search Here"
             style={styles.searchText}
             onChangeText={setSearchText}
+            placeholderTextColor={'#A9ACAC'}
           />
         </HStack>
       </View>

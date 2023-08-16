@@ -63,6 +63,7 @@ const RegistrationPage = props => {
           style={styles.input}
           onChangeText={onChangeEmail}
           value={email}
+          placeholderTextColor={'#A9ACAC'}
         />
         <TextInput
           placeholder="Password"
@@ -70,6 +71,7 @@ const RegistrationPage = props => {
           onChangeText={onChangePass}
           value={password}
           secureTextEntry={true}
+          placeholderTextColor={'#A9ACAC'}
         />
         <TextInput
           placeholder="Retype Password"
@@ -77,6 +79,7 @@ const RegistrationPage = props => {
           onChangeText={onChangeRPass}
           value={retypePassword}
           secureTextEntry={true}
+          placeholderTextColor={'#A9ACAC'}
         />
 
         <TouchableOpacity style={styles.logButton} onPress={onPressSignUp}>
